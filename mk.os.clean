@@ -1,0 +1,19 @@
+#!/bin/bash
+
+## Make the system clean by removing old kernels, packages, config files
+
+# Remove old linux kernels
+dpkg -l linux-* | awk '/^ii/{ print $2}' | grep -v -e `uname -r | cut -f1,2 -d"-"` | grep -e [0-9] | xargs sudo apt-get -y purge
+# TODO: remove moduels for old kernels in /lib/modules/ directoy
+
+# Remove all unused packages
+sudo apt-get -y autoremove
+
+# Erase downloaded archive files
+sudo apt-get -y clean
+
+# Erase old downloaded archive files
+sudo apt-get -y autoclean
+
+# Erase configuration files of removed packages
+# TODO

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+## Create an ISO image from a directory
+
+ISODir=$1
+
+# Precondition
+if [ -z $ISODir ] || [ ! -d $ISODir ]
+then
+  echo "Specify the directory to create an ISO image from!"
+  exit 1
+fi
+
+
+ISOImg=$ISODir
+
+# Remove trailing slash
+if [ ${ISOImg:(-1)} = / ]
+then
+  ISOImg=${ISOImg%/}
+fi
+
+# Add .iso to ISO image file
+ISOImg=${ISOImg}.iso
+
+
+# Use command mkisofs to do the real job
+mkisofs -J -r -o $ISOImg $ISODir

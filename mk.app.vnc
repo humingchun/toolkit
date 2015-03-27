@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# enable x11vnc server for desktop sharing
+# use `x11vnc -storepasswd` to set password first.
+x11vnc -rfbauth /home/michael/.vnc/passwd -forever -viewonly -auth /home/someone/.Xauthority -display :0 &

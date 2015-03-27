@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# use ssh as socks5 tunnel
+# replace `password` with real password
+sshpass -p 'password' ssh -N -D 10000 socks@192.241.204.102 &
